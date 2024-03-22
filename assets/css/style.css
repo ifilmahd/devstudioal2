@@ -459,17 +459,6 @@ body::-webkit-scrollbar-thumb {
   font-family: var(--heading);
 }
 
-#preloader {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 99999;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  background: #181d2a url("../img/loader.svg") no-repeat center center;
-}
-
 .scrollup {
   width: 55px;
   right: 20px;
