@@ -17047,7 +17047,7 @@ CSS INDEX
 }
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .hpt-testimonial-1-sider-btn-wrap {
-    left: 0;
+    left: 300px;
     -webkit-transform: translateX(0%);
             transform: translateX(0%);
     background-color: #fff;
