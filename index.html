@@ -987,30 +987,32 @@
                     <div class="hpt-contact-1-form">
                         <img src="assets/img/new_home/cta/contact-1-shape-1.png" alt="" class="shape-1">
                         <img src="assets/img/new_home/cta/contact-1-shape-2.png" alt="" class="shape-2">
-                        <form action="#">
-                            <h4 class="form-title reveal-type" >Anytime Consulting</h4>
-                            <div class="input-item">
-                                <input type="text" placeholder="full name" >
-                                <img src="assets/img/new_home/icon/user-profile.svg" alt="" class="icon">
-                            </div>
-                            <div class="input-item">
-                                <input type="number" placeholder="phone number" >
-                                <img src="assets/img/new_home/icon/phone-call.svg" alt="" class="icon">
-                            </div>
-                            <div class="input-item">
-                                <input type="email" placeholder="email address" >
-                                <img src="assets/img/new_home/icon/mail.svg" alt="" class="icon">
-
-                            </div>
-                            <div class="input-item">
-                                <textarea cols="30" rows="10" placeholder="Type Your Message"></textarea>
-                                <img src="assets/img/new_home/icon/message-text.svg" alt="" class="icon-textarea">
-
-                            </div>
-                            <div class="form-btn-wrap">
-                                <button class="contact-1-btn" >contact now</button>
-                            </div>
-                        </form>
+                        <form action="sendmail.php" method="post">
+                     <h4 class="form-title reveal-type">Anytime Consulting</h4>
+                       <div class="input-item">
+                     <label for="full-name">Full Name *</label>
+                   <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
+                       <img src="assets/img/new_home/icon/user-profile.svg" alt="" class="icon">
+                   </div>
+          <div class="input-item">
+               <label for="phone-number">Phone Number *</label>
+                <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number" required>
+                   <img src="assets/img/new_home/icon/phone-call.svg" alt="" class="icon">
+                     </div>
+                    <div class="input-item">
+                  <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+              <img src="assets/img/new_home/icon/mail.svg" alt="" class="icon">
+               </div>
+                  <div class="input-item">
+                        <label for="message">Message *</label>
+                      <textarea id="message" name="message" cols="30" rows="10" placeholder="Type your message" required></textarea>
+                     <img src="assets/img/new_home/icon/message-text.svg" alt="" class="icon-textarea">
+                      </div>
+                    <div class="form-btn-wrap">
+                   <button class="contact-1-btn" type="submit">Contact Now</button>
+                      </div>
+                </form>
                     </div>
                 </div>
 
