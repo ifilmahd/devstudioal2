@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 
         // Compose the email message
-        $to = "recipient@example.com"; // Replace with your email address
+        $to = "ifilmahd@gmail.com"; // Replace with your email address
         $headers = "From: $first_name $last_name <$email>";
         $message_body = "Name: $first_name $last_name\n";
         $message_body .= "Email: $email\n";
