@@ -1,31 +1,40 @@
 <?php
 
 // Define some constants
-define( "RECIPIENT_NAME", "DevStudioAl" );
-define( "RECIPIENT_EMAIL", "ifilmahd@gmail.com" ); //write your mail here
+define("RECIPIENT_NAME", "DevStudioAl");
+define("RECIPIENT_EMAIL", "ifilmahd@gmail.com"); //write your mail here
 
-// Read the form values
+// Read the form values and sanitize input
 $success = false;
-$userName = isset( $_POST['name'] ) ? preg_replace( "/[^\s\S\.\-\_\@a-zA-Z0-9]/", "", $_POST['name'] ) : "";
-$senderEmail = isset( $_POST['Email'] ) ? preg_replace( "/[^\.\-\_\@a-zA-Z0-9]/", "", $_POST['Email'] ) : "";
-$senderPhone = isset( $_POST['phone'] ) ? preg_replace( "/[^\.\-\_\@a-zA-Z0-9]/", "", $_POST['phone'] ) : "";
-$userSubject = isset( $_POST['subject'] ) ? preg_replace( "/[^\s\S\.\-\_\@a-zA-Z0-9]/", "", $_POST['subject'] ) : "";
-$message = isset( $_POST['message'] ) ? preg_replace( "/(From:|To:|BCC:|CC:|Subject:|Content-Type:)/", "", $_POST['message'] ) : "";
+$userName = isset($_POST['name']) ? filter_var($_POST['name'], FILTER_SANITIZE_STRING) : "";
+$senderEmail = isset($_POST['Email']) ? filter_var($_POST['Email'], FILTER_SANITIZE_EMAIL) : "";
+$senderPhone = isset($_POST['phone']) ? filter_var($_POST['phone'], FILTER_SANITIZE_STRING) : "";
+$userSubject = isset($_POST['subject']) ? filter_var($_POST['subject'], FILTER_SANITIZE_STRING) : "";
+$message = isset($_POST['message']) ? filter_var($_POST['message'], FILTER_SANITIZE_STRING) : "";
 
-// If all values exist, send the email
-if ( $userName && $senderEmail && $senderPhone && $userSubject && $message) {
-  $recipient = RECIPIENT_NAME . " <" . RECIPIENT_EMAIL . ">";
-  $headers = "From: " . $userName . "";
-  $msgBody = " Email: ". $senderEmail . " Phone: ". $senderPhone . " Subject: ". $userSubject . " Message: " . $message . "";
-  $success = mail( $recipient, $headers, $msgBody );
+// Validate input
+if ($userName && $senderEmail && $senderPhone && $userSubject && $message) {
+    // Construct recipient and message body
+    $recipient = RECIPIENT_NAME . " <" . RECIPIENT_EMAIL . ">";
+    $headers = "From: " . $userName . " <" . $senderEmail . ">";
+    $msgBody = "Email: " . $senderEmail . "\nPhone: " . $senderPhone . "\nSubject: " . $userSubject . "\nMessage: " . $message;
 
-  //Set Location After Successsfull Submission
-  header('Location: contact.html?message=Successfull');
-}
+    // Send the email
+    $success = mail($recipient, $userSubject, $msgBody, $headers);
 
-else{
-	//Set Location After Unsuccesssfull Submission
-  	header('Location: 404.html?message=Failed');	
+    // Set Location After Successful Submission
+    if ($success) {
+        header('Location: contact.html?message=Successful');
+        exit;
+    } else {
+        // Set Location After Unsuccessful Submission
+        header('Location: 404.html?message=Failed');
+        exit;
+    }
+} else {
+    // Set Location if Required Fields are Empty
+    header('Location: 404.html?message=MissingFields');
+    exit;
 }
 
 ?>
