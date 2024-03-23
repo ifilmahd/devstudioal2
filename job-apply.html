@@ -64,48 +64,48 @@
 			<div class="bi-team-details-contact-info headline pera-content">
 				<div class="bi-team-details-contact-title">
 					<div class="bi-team-details-contact-form">
-						<form action="#" method="get">
-							<div class="row">
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="First Name">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="Last Name">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="email" placeholder="Email">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="Subject">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="Location (City)">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="Position">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="email" placeholder="Portfolio / Website link..">
-								</div>
-								<div class="col-md-6">
-									<input type="text" name="name" placeholder="Your expected salary">
-								</div>
-								<div class="col-md-12">
-									<div class="upload-cv headline">
-										<h3>Upload CV</h3>
-										<input type="file" id="file" name="file" accept=".txt, .pdf, .doc, .docx">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<textarea name="message" placeholder="Your Message"></textarea>
-								</div>
-								<div class="col-md-12">
-									<div class="ai-submit-btn d-flex">
-										<button>Send messages</button>
-									</div>
-								</div>
-							</div>
-						</form>
+						<form action="jobapply.php" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" name="first_name" placeholder="First Name" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="last_name" placeholder="Last Name" required>
+        </div>
+        <div class="col-md-6">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="subject" placeholder="Subject" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="location" placeholder="Location (City)" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="position" placeholder="Position" required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="portfolio" placeholder="Portfolio / Website link.." required>
+        </div>
+        <div class="col-md-6">
+            <input type="text" name="salary" placeholder="Your expected salary" required>
+        </div>
+        <div class="col-md-12">
+            <div class="upload-cv headline">
+                <h3>Upload CV</h3>
+                <input type="file" id="file" name="file" accept=".txt, .pdf, .doc, .docx" required>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <div class="col-md-12">
+            <div class="ai-submit-btn d-flex">
+                <button type="submit">Send messages</button>
+            </div>
+             </div>
+                </div>
+                        </form>
 					</div>
 				</div>
 			</div>
