@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = filter_var($_POST['message'], FILTER_SANITIZE_STRING);
 
         // Compose the email message
-        $to = "ifilmahd@gmail.com"; // Replace with your email address
+        $to = "recipient@example.com"; // Replace with your email address
         $headers = "From: $first_name $last_name <$email>";
         $message_body = "Name: $first_name $last_name\n";
         $message_body .= "Email: $email\n";
@@ -34,19 +34,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Send the email
         $success = mail($to, $subject, $message_body, $headers);
 
+        // Display success or error message
         if ($success) {
-            header("Location: success.html"); // Redirect to a success page
-            exit;
+            $message = "Your message has been sent successfully.";
         } else {
-            header("Location: error.html"); // Redirect to an error page
-            exit;
+            $message = "Sorry, there was an error sending your message. Please try again later.";
         }
     } else {
-        header("Location: error.html"); // Redirect to an error page if form fields are not set or empty
-        exit;
+        $message = "Please fill out all the required fields.";
     }
 } else {
-    header("Location: error.html"); // Redirect to an error page if request method is not POST
-    exit;
+    $message = "Invalid request method.";
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <!-- Add any CSS stylesheets or meta tags as needed -->
+    <style>
+        /* Add your CSS styles here */
+    </style>
+</head>
+<body>
+
+<!-- Display the message -->
+<div><?php echo $message; ?></div>
+
+<!-- Add your form here -->
+<form action="#" method="post" enctype="multipart/form-data">
+    <!-- Your form fields -->
+</form>
+
+<!-- Add any JavaScript scripts as needed -->
+<script>
+    // Add your JavaScript code here
+</script>
+
+</body>
+</html>
