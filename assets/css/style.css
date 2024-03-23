@@ -12440,13 +12440,13 @@ CSS INDEX
 }
 @keyframes call-btn-1 {
   0% {
-    outline: 7px solid rgba(255, 56, 56, 0.2);
+    outline: 7px solid rgba(255, 254, 254, 0.2);
   }
   50% {
-    outline: 7px solid rgba(255, 56, 56, 0.9);
+    outline: 8px solid rgba(11, 187, 17);
   }
   100% {
-    outline: 7px solid rgba(255, 56, 56, 0.2);
+    outline: 7px solid rgba(243, 242, 242, 0.2);
   }
 }
 @-webkit-keyframes videoBtn {
@@ -15331,13 +15331,13 @@ CSS INDEX
   position: relative;
   font-size: 22px;
   display: inline-block;
-  width: 54px;
-  height: 54px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   text-align: center;
   line-height: 46px;
-  border: 4px solid #fff;
-  background-color: #FF3838;
+  border: 2px solid #0bbb11;
+  background-color: #f7f3f3;
   outline: 7px solid rgba(255, 56, 56, 0.2);
   -webkit-animation: call-btn-1 3s linear infinite;
           animation: call-btn-1 3s linear infinite;
