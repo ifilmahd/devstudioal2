@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if form fields are set and not empty
     if (
         isset($_POST['first_name']) && isset($_POST['last_name']) &&
-        isset($_POST['email']) && isset($_POST['subject']) &&
+        isset($_POST['email']) && isset($_POST['number']) &&
         isset($_POST['location']) && isset($_POST['position']) &&
         isset($_POST['portfolio']) && isset($_POST['salary']) &&
         isset($_POST['message'])
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $first_name = filter_var($_POST['first_name'], FILTER_SANITIZE_STRING);
         $last_name = filter_var($_POST['last_name'], FILTER_SANITIZE_STRING);
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-        $subject = filter_var($_POST['subject'], FILTER_SANITIZE_STRING);
+        $number = filter_var($_POST['number'], FILTER_SANITIZE_STRING);
         $location = filter_var($_POST['location'], FILTER_SANITIZE_STRING);
         $position = filter_var($_POST['position'], FILTER_SANITIZE_STRING);
         $portfolio = filter_var($_POST['portfolio'], FILTER_SANITIZE_STRING);
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $headers = "From: $first_name $last_name <$email>";
         $message_body = "Name: $first_name $last_name\n";
         $message_body .= "Email: $email\n";
-        $message_body .= "Subject: $subject\n";
+        $message_body .= "Number: $number\n";
         $message_body .= "Location: $location\n";
         $message_body .= "Position: $position\n";
         $message_body .= "Portfolio: $portfolio\n";
