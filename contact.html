@@ -128,10 +128,10 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
 	    <div class="col-md-6">
-            <input type="number" id="email" name="number" placeholder="Phone Number" required>
+            <input type="number" id="number" name="number" placeholder="Phone Number" required>
         </div>
 	    <div class="col-md-6">
-            <input type="text" id="email" name="subject" placeholder="Subject" required>
+            <input type="text" id="subject" name="subject" placeholder="Subject" required>
         </div>
         <div class="col-md-12">
             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
@@ -166,6 +166,8 @@ document.getElementById("contactForm").addEventListener("submit", function(event
             // Optionally, clear form fields
             document.getElementById("name").value = "";
             document.getElementById("email").value = "";
+            document.getElementById("number").value = "";
+	    document.getElementById("subject").value = "";
             document.getElementById("message").value = "";
         } else {
             // Form submission failed
