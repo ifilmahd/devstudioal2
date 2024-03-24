@@ -67,10 +67,10 @@
 						<form id="contactForm">
     <div class="row">
            <div class="col-md-6">
-            <input type="text" id="name" name="name" placeholder="First Name" required>
+            <input type="text" id="firstname" name="name" placeholder="First Name" required>
         </div>
         <div class="col-md-6">
-            <input type="text" id="name" name="name" placeholder="Last Name" required>
+            <input type="text" id="lastname" name="name" placeholder="Last Name" required>
         </div>
         <div class="col-md-6">
             <input type="email" id="email" name="email" placeholder="Email" required>
@@ -128,7 +128,8 @@ document.getElementById("contactForm").addEventListener("submit", function(event
             // Form submission successful
             alert("Your job application has been sent successfully.!");
             // Optionally, clear form fields
-            document.getElementById("name").value = "";
+            document.getElementById("firstname").value = "";
+	    document.getElementById("lastname").value = "";
             document.getElementById("email").value = "";
 	    document.getElementById("number").value = "";
             document.getElementById("location").value = "";
