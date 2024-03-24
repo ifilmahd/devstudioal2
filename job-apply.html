@@ -64,7 +64,11 @@
 			<div class="bi-team-details-contact-info headline pera-content">
 				<div class="bi-team-details-contact-title">
 					<div class="bi-team-details-contact-form">
-			<form id="my-form" action="https://formspree.io/f/myyrdaro" method="POST" enctype="multipart/form-data">
+			<form
+  action="https://formspree.io/f/myyrdaro"
+  method="POST"
+  enctype="multipart/form-data"
+>
                       <div class="row">
                 <div class="col-md-6">
             <input type="text" id="firstname" name="firstname" placeholder="First Name *" required>
@@ -99,7 +103,6 @@
         <div class="col-md-12">
             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
         </div>
-	<div id="my-form-status" class="col-md-12"></div>
         <div class="col-md-12">
             <div class="ai-submit-btn d-flex">
                 <button type="submit">Send Application</button>
@@ -107,38 +110,6 @@
         </div>
     </div>
 </form>
-<script>
-    var form = document.getElementById("my-form");
-    
-    async function handleSubmit(event) {
-      event.preventDefault();
-      var status = document.getElementById("my-form-status");
-      var data = new FormData(event.target);
-      fetch(event.target.action, {
-        method: form.method,
-        body: data,
-        headers: {
-            'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          status.innerHTML = "Thanks for your submission!";
-          form.reset()
-        } else {
-          response.json().then(data => {
-            if (Object.prototype.hasOwnProperty.call(data, 'errors')) {
-              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-            } else {
-              status.innerHTML = "Oops! There was a problem submitting your form"
-            }
-          })
-        }
-      }).catch(error => {
-        status.innerHTML = "Oops! There was a problem submitting your form"
-      });
-    }
-    form.addEventListener("submit", handleSubmit)
-</script>			
 					</div>
 				</div>
 			</div>
