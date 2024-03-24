@@ -119,22 +119,16 @@
 					</div>
 					<p>Whether you have questions, feedback, or want to discuss a project, our team is here to assist you. Reach out through the form below or connect with us directly via email or phone. We look forward to hearing from you!</p>
 					<div class="bi-team-details-contact-form">
-						<form action="sendmail.php" method="post">
+						<form id="contactForm">
     <div class="row">
         <div class="col-md-6">
-            <input type="text" name="name" placeholder="First Name">
+            <input type="text" id="name" name="name" placeholder="First Name" required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="Email" placeholder="Email">
-        </div>
-        <div class="col-md-6">
-            <input type="text" name="phone" placeholder="Phone No.">
-        </div>
-        <div class="col-md-6">
-            <input type="text" name="subject" placeholder="Subject">
+            <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
         <div class="col-md-12">
-            <textarea name="message" placeholder="Your Message"></textarea>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
         </div>
         <div class="col-md-12">
             <div class="bi-submit-btn">
@@ -143,6 +137,40 @@
         </div>
     </div>
 </form>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data
+    var formData = new FormData(this);
+
+    // Send form data to Formspree via Fetch API
+    fetch("https://formspree.io/f/mjvnedno", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Form submission successful
+            alert("Your message has been sent successfully!");
+            // Optionally, clear form fields
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+        } else {
+            // Form submission failed
+            alert("Sorry, there was an error sending your message. Please try again later.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+</script>
 					</div>
 				</div>
 			</div>
