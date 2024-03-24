@@ -1,40 +1,40 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Read form data
+    $name = isset($_POST['name']) ? $_POST['name'] : '';
+    $email = isset($_POST['Email']) ? $_POST['Email'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
 
-// Define some constants
-define("RECIPIENT_NAME", "DevStudioAl");
-define("RECIPIENT_EMAIL", "ifilmahd@gmail.com"); //write your mail here
+    // Set recipient email
+    $to = "ifilmahd@gmail.com"; // Replace with your email address
 
-// Read the form values and sanitize input
-$success = false;
-$userName = isset($_POST['name']) ? filter_var($_POST['name'], FILTER_SANITIZE_STRING) : "";
-$senderEmail = isset($_POST['Email']) ? filter_var($_POST['Email'], FILTER_SANITIZE_EMAIL) : "";
-$senderPhone = isset($_POST['phone']) ? filter_var($_POST['phone'], FILTER_SANITIZE_STRING) : "";
-$userSubject = isset($_POST['subject']) ? filter_var($_POST['subject'], FILTER_SANITIZE_STRING) : "";
-$message = isset($_POST['message']) ? filter_var($_POST['message'], FILTER_SANITIZE_STRING) : "";
+    // Set email subject
+    $email_subject = "New Contact Form Submission: $subject";
 
-// Validate input
-if ($userName && $senderEmail && $senderPhone && $userSubject && $message) {
-    // Construct recipient and message body
-    $recipient = RECIPIENT_NAME . " <" . RECIPIENT_EMAIL . ">";
-    $headers = "From: " . $userName . " <" . $senderEmail . ">";
-    $msgBody = "Email: " . $senderEmail . "\nPhone: " . $senderPhone . "\nSubject: " . $userSubject . "\nMessage: " . $message;
+    // Compose the email message
+    $email_message = "Name: $name\n";
+    $email_message .= "Email: $email\n";
+    $email_message .= "Phone: $phone\n";
+    $email_message .= "Subject: $subject\n";
+    $email_message .= "Message:\n$message";
 
-    // Send the email
-    $success = mail($recipient, $userSubject, $msgBody, $headers);
+    // Set headers
+    $headers = "From: $name <$email>\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "Content-type: text/plain; charset=utf-8\r\n";
 
-    // Set Location After Successful Submission
-    if ($success) {
-        header('Location: contact.html?message=Successful');
-        exit;
+    // Attempt to send the email
+    if (mail($to, $email_subject, $email_message, $headers)) {
+        // Email sent successfully
+        echo "Your message has been sent successfully!";
     } else {
-        // Set Location After Unsuccessful Submission
-        header('Location: 404.html?message=Failed');
-        exit;
+        // Failed to send email
+        echo "Sorry, there was an error sending your message. Please try again later.";
     }
 } else {
-    // Set Location if Required Fields are Empty
-    header('Location: 404.html?message=MissingFields');
-    exit;
+    // Not a POST request, redirect or handle accordingly
+    echo "Invalid request method.";
 }
-
 ?>
