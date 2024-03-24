@@ -64,7 +64,7 @@
 			<div class="bi-team-details-contact-info headline pera-content">
 				<div class="bi-team-details-contact-title">
 					<div class="bi-team-details-contact-form">
-			<form id="contactForm" action="https://formspree.io/f/myyrdaro" method="POST" enctype="multipart/form-data">
+			<form id="my-form" action="https://formspree.io/f/myyrdaro" method="POST" enctype="multipart/form-data">
                       <div class="row">
                 <div class="col-md-6">
             <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
@@ -107,45 +107,37 @@
     </div>
 </form>
 <script>
-document.getElementById("contactForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
-
-    // Get form data
-    var formData = new FormData(this);
-
-    // Send form data to Formspree via Fetch API
-    fetch("https://formspree.io/f/myyrdaro", {
-        method: "POST",
-        body: formData,
+    var form = document.getElementById("my-form");
+    
+    async function handleSubmit(event) {
+      event.preventDefault();
+      var status = document.getElementById("my-form-status");
+      var data = new FormData(event.target);
+      fetch(event.target.action, {
+        method: form.method,
+        body: data,
         headers: {
-            "Accept": "application/json"
+            'Accept': 'application/json'
         }
-    })
-    .then(response => {
+      }).then(response => {
         if (response.ok) {
-            // Form submission successful
-            alert("Your job application has been sent successfully.!");
-            // Optionally, clear form fields
-            document.getElementById("firstname").value = "";
-	    document.getElementById("lastname").value = "";
-            document.getElementById("email").value = "";
-	    document.getElementById("number").value = "";
-            document.getElementById("location").value = "";
-            document.getElementById("position").value = "";
-            document.getElementById("portfolio").value = "";
-	    document.getElementById("salary").value = "";
-            document.getElementById("file").value = "";
-            document.getElementById("message").value = "";
+          status.innerHTML = "Thanks for your submission!";
+          form.reset()
         } else {
-            // Form submission failed
-            alert("Sorry, there was an error sending your application. Please try again later.");
+          response.json().then(data => {
+            if (Object.hasOwn(data, 'errors')) {
+              status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+            } else {
+              status.innerHTML = "Oops! There was a problem submitting your form"
+            }
+          })
         }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });
-});
-</script>						
+      }).catch(error => {
+        status.innerHTML = "Oops! There was a problem submitting your form"
+      });
+    }
+    form.addEventListener("submit", handleSubmit)
+</script>					
 					</div>
 				</div>
 			</div>
