@@ -128,7 +128,7 @@
             <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
 	    <div class="col-md-6">
-            <input type="number" id="number" name="number" placeholder="Phone Number" required>
+            <input type="tel" id="number" name="number" placeholder="Phone Number" required>
         </div>
 	    <div class="col-md-6">
             <input type="text" id="subject" name="subject" placeholder="Subject" required>
@@ -143,7 +143,18 @@
         </div>
     </div>
 </form>
+<script>
+// Get the phone number input element
+const phoneNumberInput = document.getElementById("number");
 
+// Prevent the user from deleting the "+" symbol
+phoneNumberInput.addEventListener("input", function(event) {
+    const inputValue = event.target.value;
+    if (!inputValue.startsWith("+")) {
+        event.target.value = "+" + inputValue;
+    }
+});
+</script>
 <script>
 document.getElementById("contactForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
