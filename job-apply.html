@@ -99,6 +99,7 @@
         <div class="col-md-12">
             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
         </div>
+	<div id="my-form-status" class="col-md-12"></div>
         <div class="col-md-12">
             <div class="ai-submit-btn d-flex">
                 <button type="submit">Send Application</button>
@@ -125,7 +126,7 @@
           form.reset()
         } else {
           response.json().then(data => {
-            if (Object.hasOwn(data, 'errors')) {
+            if (Object.prototype.hasOwnProperty.call(data, 'errors')) {
               status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
             } else {
               status.innerHTML = "Oops! There was a problem submitting your form"
@@ -137,7 +138,7 @@
       });
     }
     form.addEventListener("submit", handleSubmit)
-</script>					
+</script>			
 					</div>
 				</div>
 			</div>
