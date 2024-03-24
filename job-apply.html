@@ -64,31 +64,31 @@
 			<div class="bi-team-details-contact-info headline pera-content">
 				<div class="bi-team-details-contact-title">
 					<div class="bi-team-details-contact-form">
-						<form action="jobapply.php" method="post" enctype="multipart/form-data">
+						<form id="contactForm">
     <div class="row">
-        <div class="col-md-6">
-            <input type="text" name="first_name" placeholder="First Name" required>
+           <div class="col-md-6">
+            <input type="text" id="name" name="name" placeholder="First Name" required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="last_name" placeholder="Last Name" required>
+            <input type="text" id="name" name="name" placeholder="Last Name" required>
         </div>
         <div class="col-md-6">
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="email" id="email" name="email" placeholder="Email" required>
         </div>
         <div class="col-md-6">
-            <input type="number" name="number" placeholder="Phone Number" required>
+            <input type="number" id="number" name="number" placeholder="Phone Number" required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="location" placeholder="Location (City)" required>
+            <input type="text" id="location" name="location" placeholder="Location (City)" required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="position" placeholder="Position" required>
+            <input type="text"  id="position"  name="position" placeholder="Position" required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="portfolio" placeholder="Portfolio / Website link.." required>
+            <input type="text" id="portfolio"  name="portfolio" placeholder="Portfolio / Website link.." required>
         </div>
         <div class="col-md-6">
-            <input type="text" name="salary" placeholder="Your expected salary" required>
+            <input type="text" id="salary"  name="salary" placeholder="Your expected salary" required>
         </div>
         <div class="col-md-12">
             <div class="upload-cv headline">
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <textarea name="message" placeholder="Your Message" required></textarea>
+            <textarea id="message"  name="message" placeholder="Your Message" required></textarea>
         </div>
         <div class="col-md-12">
             <div class="ai-submit-btn d-flex">
@@ -106,6 +106,49 @@
              </div>
                 </div>
                         </form>
+						<!-- start of Job Apply section
+	============================================= -->
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data
+    var formData = new FormData(this);
+
+    // Send form data to Formspree via Fetch API
+    fetch("https://formspree.io/f/myyrdaro", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Form submission successful
+            alert("Your job application has been sent successfully.!");
+            // Optionally, clear form fields
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+	    document.getElementById("number").value = "";
+            document.getElementById("location").value = "";
+            document.getElementById("position").value = "";
+            document.getElementById("portfolio").value = "";
+	    document.getElementById("salary").value = "";
+            document.getElementById("file").value = "";
+            document.getElementById("message").value = "";
+        } else {
+            // Form submission failed
+            alert("Sorry, there was an error sending your application. Please try again later.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+</script>
+<!-- End of Job Apply section
+	============================================= -->						
 					</div>
 				</div>
 			</div>
