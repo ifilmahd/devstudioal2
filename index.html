@@ -987,32 +987,63 @@
                     <div class="hpt-contact-1-form">
                         <img src="assets/img/new_home/cta/contact-1-shape-1.png" alt="" class="shape-1">
                         <img src="assets/img/new_home/cta/contact-1-shape-2.png" alt="" class="shape-2">
-                        <form action="sendmail.php" method="post">
-                     <h4 class="form-title reveal-type">Anytime Consulting</h4>
-                       <div class="input-item">
-                     <label for="full-name">Full Name *</label>
-                   <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required>
-                       <img src="assets/img/new_home/icon/user-profile.svg" alt="" class="icon">
-                   </div>
-          <div class="input-item">
-               <label for="phone-number">Phone Number *</label>
-                <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number" required>
-                   <img src="assets/img/new_home/icon/phone-call.svg" alt="" class="icon">
-                     </div>
-                    <div class="input-item">
-                  <label for="email">Email Address *</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-              <img src="assets/img/new_home/icon/mail.svg" alt="" class="icon">
-               </div>
-                  <div class="input-item">
-                        <label for="message">Message *</label>
-                      <textarea id="message" name="message" cols="30" rows="10" placeholder="Type your message" required></textarea>
-                     <img src="assets/img/new_home/icon/message-text.svg" alt="" class="icon-textarea">
-                      </div>
-                    <div class="form-btn-wrap">
-                   <button class="contact-1-btn" type="submit">Contact Now</button>
-                      </div>
-                </form>
+                        <form action="contactForm">
+                            <h4 class="form-title reveal-type" >Anytime Consulting</h4>
+                            <div class="input-item">
+                                <input type="text" id="name" name="name" placeholder="Full Name" required>
+                                <img src="assets/img/new_home/icon/user-profile.svg" alt="" class="icon">
+                            </div>
+                            <div class="input-item">
+                                <input type="tel" id="number" name="number" placeholder="Phone Number" required>
+                                <img src="assets/img/new_home/icon/phone-call.svg" alt="" class="icon">
+                            </div>
+                            <div class="input-item">
+                                <input type="email" id="email" name="email" placeholder="Email" required>
+                                <img src="assets/img/new_home/icon/mail.svg" alt="" class="icon">
+
+                            </div>
+                            <div class="input-item">
+                                <textarea cols="30" rows="10" id="message" name="message" placeholder="Your Message" required></textarea>
+                                <img src="assets/img/new_home/icon/message-text.svg" alt="" class="icon-textarea">
+                            </div>
+                            <div class="form-btn-wrap">
+                                <button class="contact-1-btn" >contact now</button>
+                            </div>
+                        </form>
+                        <script>
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Get form data
+    var formData = new FormData(this);
+
+    // Send form data to Formspree via Fetch API
+    fetch("https://formspree.io/your_email_address_here", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "Accept": "application/json"
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Form submission successful
+            alert("Your message has been sent successfully!");
+            // Optionally, clear form fields
+            document.getElementById("name").value = "";
+             document.getElementById("number").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("message").value = "";
+        } else {
+            // Form submission failed
+            alert("Sorry, there was an error sending your message. Please try again later.");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+    });
+});
+</script>
                     </div>
                 </div>
 
