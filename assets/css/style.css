@@ -13358,7 +13358,6 @@ CSS INDEX
   width: 90px;
   height: 90px;
   border-radius: 50%;
-  border: 1px solid var(--clr-theme-primary);
   overflow: hidden;
   margin-bottom: 19px;
 }
